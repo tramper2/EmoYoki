@@ -318,4 +318,44 @@ async def reset_test_data(
 
     await session.commit()
 
+
     return {"message": "테스트 데이터가 초기화되었습니다"}
+
+
+@router.get("/login")
+async def test_login(
+    phone: str,
+    session: AsyncSession = Depends(get_async_session),
+):
+    """테스트용 빠른 로그인 (비밀번호 없이 전화번호로만)"""
+    if not settings.TEST_MODE:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="테스트 모드에서만 사용 가능합니다",
+        )
+
+    result = await session.execute(
+        select(User).where(User.phone == phone)
+    )
+    user = result.scalar_one_or_none()
+
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="사용자를 찾을 수 없습니다",
+        )
+
+    token_data = {"sub": str(user.id), "role": user.role}
+    access_token = create_access_token(token_data)
+    refresh_token = create_refresh_token(token_data)
+
+    return {
+        "user": {
+            "id": str(user.id),
+            "phone": user.phone,
+            "name": user.name,
+            "role": user.role,
+        },
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+    }

@@ -10,8 +10,8 @@ from app.core.config import get_settings
 
 settings = get_settings()
 
-# 비밀번호 해싱 컨텍스트
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# 비밀번호 해싱 컨텍스트 (환경 호환성을 위해 pbkdf2_sha256 사용)
+pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:

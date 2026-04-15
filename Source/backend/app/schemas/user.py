@@ -1,18 +1,19 @@
 """사용자 관련 스키마"""
 
 from datetime import datetime
+from enum import Enum
 from typing import Optional
 
 from pydantic import BaseModel, EmailStr, Field, field_validator
 
 
-class UserRole(str, str):
+class UserRole(str, Enum):
     USER = "USER"
     HELPER = "HELPER"
     ADMIN = "ADMIN"
 
 
-class UserTier(str, str):
+class UserTier(str, Enum):
     NORMAL = "NORMAL"
     PREMIUM = "PREMIUM"
 

@@ -5,7 +5,7 @@ import uuid
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.api.deps import get_current_helper, get_current_requester, get_current_user
+from app.api.deps import get_current_helper, get_current_requester, get_current_user, get_optional_current_user
 from app.core.database import get_async_session
 from app.models.user import User
 from app.schemas.task import (
@@ -45,7 +45,7 @@ async def list_tasks(
     status: TaskStatus | None = None,
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
-    current_user: User | None = Depends(get_current_user),
+    current_user: User | None = Depends(get_optional_current_user),
     session: AsyncSession = Depends(get_async_session),
 ) -> TaskListResponse:
     """업무 목록 조회"""
@@ -62,7 +62,7 @@ async def list_tasks(
         limit=page_size,
     )
 
-    task_list = [_task_to_response(task, current_user) async for task in tasks]
+    task_list = [_task_to_response(task, current_user) for task in tasks]
 
     return TaskListResponse(
         tasks=task_list,

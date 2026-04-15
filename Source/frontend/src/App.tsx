@@ -22,7 +22,7 @@ const TaskDetailPage = ({ task, onBack, onApplyApplied }: {
   // 지원자 목록 불러오기
   const loadApplications = React.useCallback(() => {
     setIsLoadingApps(true)
-    fetch(`http://localhost:8000/api/tasks/${task.id}/applications`)
+    fetch(`/api/tasks/${task.id}/applications`)
       .then(res => res.json())
       .then(data => setApplications(data.applications || []))
       .catch(() => setApplications([]))
@@ -49,7 +49,7 @@ const TaskDetailPage = ({ task, onBack, onApplyApplied }: {
 
     setIsApplying(true)
     try {
-      const response = await fetch(`http://localhost:8000/api/tasks/${task.id}/apply`, {
+      const response = await fetch(`/api/tasks/${task.id}/apply`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ const TaskDetailPage = ({ task, onBack, onApplyApplied }: {
     }
 
     try {
-      const response = await fetch(`http://localhost:8000/api/applications/${applicationId}/status`, {
+      const response = await fetch(`/api/applications/${applicationId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -397,7 +397,7 @@ const HomePage = () => {
 
   // 업무 목록 불러오기
   const loadTasks = React.useCallback(() => {
-    fetch('http://localhost:8000/api/tasks')
+    fetch('/api/tasks')
       .then(res => res.json())
       .then(data => setTasks(data.tasks || []))
       .catch(() => setTasks([]))
@@ -412,7 +412,7 @@ const HomePage = () => {
     try {
       const phones = { user: '01000000001', premium: '01000000201', helper: '01000000401' }
 
-      const response = await fetch(`http://localhost:8000/api/test/login?phone=${phones[type]}`)
+      const response = await fetch(`/api/test/login?phone=${phones[type]}`)
       const data = await response.json()
 
       if (data.user) {
@@ -445,7 +445,7 @@ const HomePage = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/api/tasks', {
+      const response = await fetch('/api/tasks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
