@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(/home/tramp/Projects/EmoYoki/Source/frontend)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(python3 test_server.py)",
+      "Bash(python3 /home/tramp/Projects/EmoYoki/Source/backend/test_server.py)",
+      "Bash(curl -s http://localhost:8000/health)",
+      "Bash(sudo netstat *)",
+      "Bash(pkill -f \"python3.*test_server\")",
+      "Bash(kill 19934)",
+      "Bash(curl -s http://localhost:8000/api/test/accounts)",
+      "Bash(curl -s \"http://localhost:8000/api/test/login?phone=01000000001\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s http://localhost:8000/api/tasks)",
+      "Bash(curl -v http://localhost:3000)",
+      "Bash(curl -s \"http://localhost:3000/@vite/client\")",
+      "Bash(curl -s \"http://localhost:3000/src/main.tsx\")",
+      "Bash(python3 -m http.server 8080 --directory /home/tramp/Projects/EmoYoki/Source/frontend)",
+      "Bash(curl -s http://localhost:3003)",
+      "Bash(curl -v http://127.0.0.1:3003)",
+      "Bash(curl -s http://localhost:8000/api/tasks/4a597690-bc32-446f-9b6d-0435e1de3668/applications)",
+      "Bash(pkill -f \"test_server.py\")",
+      "Bash(rm -f /tmp/emo_test.db)",
+      "Bash(python3 -c \"import sys, json; data = json.load\\(sys.stdin\\); print\\(data['user']['id']\\)\")",
+      "Bash(python3 -c \"import sys, json; data = json.load\\(sys.stdin\\); print\\(data['tasks'][0]['id'] if data['tasks'] else 'No tasks'\\)\")",
+      "Bash(curl -s -X POST http://localhost:8000/api/tasks/d12c18fc-353e-40a5-949e-f441dfdd41e0/apply -H \"Content-Type: application/json\" -d '{\"message\": \"성실히 하겠습니다\"}')",
+      "Bash(curl -s http://localhost:8000/api/tasks/d12c18fc-353e-40a5-949e-f441dfdd41e0/applications)",
+      "Bash(curl -s -X POST http://localhost:8000/api/tasks/d12c18fc-353e-40a5-949e-f441dfdd41e0/apply -H \"Content-Type: application/json\" -d '{\"message\": \"일 잘합니다\"}')",
+      "Bash(curl -s -X PATCH http://localhost:8000/api/applications/eba99805-f49b-4ce6-a63c-4e739598d38f/status -H \"Content-Type: application/json\" -d '{\"status\": \"ACCEPTED\"}')"
+    ],
+    "additionalDirectories": [
+      "/var/www/html"
+    ]
+  }
+}
