@@ -39,6 +39,12 @@
             font-size: 28px;
             font-weight: bold;
             color: #667eea;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
         }
 
         .logo span {
@@ -479,7 +485,7 @@
     <div class="container">
         <!-- 헤더 -->
         <header>
-            <div class="logo">이모~ <span>여기!</span></div>
+            <div class="logo" onclick="goMain()">이모~ <span>여기!</span></div>
             <div class="user-panel" id="userPanel">
                 <div class="user-info employer" onclick="login('employer')">
                     👩‍💼 구인자 로그인
@@ -797,6 +803,28 @@
                 document.getElementById('applySuccess').classList.remove('active');
                 hideDetail();
             }, 2000);
+        }
+
+        // 메인 화면으로 이동 (초기화)
+        function goMain() {
+            currentUser = null;
+            currentPostId = null;
+            
+            // 모든 섹션 초기화
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('mainContent').classList.add('active'); // 게시판은 계속 보여주되
+            document.getElementById('postForm').style.display = 'none'; // 글쓰기 폼은 숨김
+            document.getElementById('postDetail').classList.remove('active');
+            document.getElementById('lockedContent').style.display = 'none';
+            
+            // 사용자 패널 등 상태 초기화
+            document.getElementById('userPanel').querySelectorAll('.user-info').forEach(el => el.classList.remove('active'));
+            
+            // 게시글 다시 렌더링 (로그아웃 상태 반영)
+            renderPosts();
+            
+            // 페이지 상단으로 스크롤
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // 초기 로그인 섹션에서는 게시글 프리뷰
