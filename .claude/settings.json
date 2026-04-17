@@ -155,7 +155,12 @@
       "Bash(xargs -r kill -9)",
       "Bash(python3 -m http.server 8000)",
       "Bash(python3 -m http.server 8001)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(whereis gh *)",
+      "Bash(gh repo *)",
+      "Bash(git commit *)"
     ],
     "additionalDirectories": [
       "/var/www/html",
