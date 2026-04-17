@@ -621,7 +621,7 @@
         // JSONBin.io 설정
         const JSONBIN_CONFIG = {
             binId: '69e1b85636566621a8c135f3',
-            masterKey: '$2a$10$lSiEO.qejHuIki5wXF9KhuIwNJPsaDsLidXlJaajMZbOTpeG3pquC'
+            accessKey: '$2a$10$RWoe3r4djw8XLl4Jt8HtKuoMGutCMZhCxSbPD/JBM51bz8hwYrJQK'
         };
 
         let posts = [];
@@ -632,7 +632,7 @@
             try {
                 const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}/latest`, {
                     headers: {
-                        'X-Master-Key': JSONBIN_CONFIG.masterKey
+                        'X-Access-Key': JSONBIN_CONFIG.accessKey
                     }
                 });
                 const data = await response.json();
@@ -652,7 +652,7 @@
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-Master-Key': JSONBIN_CONFIG.masterKey
+                        'X-Access-Key': JSONBIN_CONFIG.accessKey
                     },
                     body: JSON.stringify(posts)
                 });
