@@ -57,6 +57,7 @@ python3 -m http.server 8001
 # 3. 브라우저 접속
 # http://localhost:8001
 ```
+https://tramper2.github.io/EmoYoki/
 
 ### 개발 서버 실행
 
